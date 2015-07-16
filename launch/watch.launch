@@ -1,5 +1,4 @@
 <launch>
-	<rosparam file="$(find ueye)/param/ideal.yaml" command="load" />
 	<node pkg = "ueye" type="camera" name="camera" >
 		<param name="~force_streaming" value="true" />
 		<param name="~exposure_time" value="1" />
