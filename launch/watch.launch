@@ -2,7 +2,7 @@
 	<rosparam file="$(find ueye)/param/ideal.yaml" command="load" />
 	<node pkg = "ueye" type="camera" name="camera" >
 		<param name="~force_streaming" value="true" />
-		<param name="~exposure_time" value="8" />
+		<param name="~exposure_time" value="1" />
 		<param name="~frame_rate" value="30.0" />
 		<param name="~pixel_clock" value="35" />
 	</node>
