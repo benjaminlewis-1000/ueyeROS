@@ -124,14 +124,14 @@ void getImages(const sensor_msgs::Image::ConstPtr& msg)
 	namedWindow("Video", WINDOW_NORMAL);
 	imshow("Video", image);
 	char key = waitKey(30);
-	if (key == ' '){
+	//if (key == ' '){
 		cout << "space bar\n";
 		ostringstream name;
 		name << directory << "/img" << frameCount++ << ".jpg";
 		string filename = name.str();
 		imwrite(filename, image);
 		waitKey(10);
-	}else if(key == 'x'){
+	if(key == 'x' || frameCount > 100){
 		cout << frameCount;
 		ostringstream iname, dname;
 		iname << directory << "/intrinsic.txt";
@@ -169,9 +169,22 @@ int main(int argc, char **argv)
 	}
 	
 	char call[256];
+	sprintf(call, "exec cp %s/intrinsic.txt %s/..", directory.c_str(), directory.c_str() );
+	int a = system(call);
 	sprintf(call, "exec rm %s/*", directory.c_str());
-	int a = system(call );
+	a = system(call );
 	
- 	ros::Subscriber imSub = n.subscribe(topic, 1000, getImages);
-
-  ros::spin(); return 0; } 
+ 	ros::Subscriber imSub = n.subscribe(topic, 1, getImages);
+	ros::Rate r(0.5);
+	
+	while (ros::ok() ){
+		ros::Duration(0.5).sleep(); 
+		ros::spinOnce();
+		r.sleep();
+	}
+ // ros::spin(); return 0;
+  return 0;
+} 
+   
+   
+   
