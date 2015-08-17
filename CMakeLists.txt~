@@ -130,7 +130,7 @@ target_link_libraries(framerate
   ueye_nodelets
 )
 
-add_executable(calibrate calibration/viewer.cpp)
+add_executable(calibrate calibration/calibrate.cpp)
 target_link_libraries(calibrate ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
 install(TARGETS ueye_nodelets camera stereo framerate

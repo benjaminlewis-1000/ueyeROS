@@ -1,12 +1,13 @@
 <launch>
 	<node pkg = "ueye" type="camera" name="camera" >
 		<param name="~force_streaming" value="true" />
-		<param name="~exposure_time" value="10" />
+		<param name="~exposure_time" value="15" />
 		<param name="~frame_rate" value="30.0" />
 		<param name="~pixel_clock" value="35" />
 	</node>
 	
 	<param name="videoFeed" value="image_raw" />
-	<node pkg = "webcam_pub" type="viewer" name="view" >
+	<param name="saveDir" value="/home/benjamin/catkin_ws/src/ueyeROS/process" />
+	<node pkg = "ueye" type="calibrate" name="view" >
 	</node>
 </launch>
